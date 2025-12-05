@@ -1,0 +1,18 @@
+#ambiente virtual
+.env
+venv/
+.env.*
+
+#dados Mysql(volume)
+aprendendo_mysql
+
+#arquivos docker
+*.pid
+*.sock
+logs/
+*.logs
+
+#cache pyt
+__pycache__/
+*.__pycache__*.pio
+*.pyd

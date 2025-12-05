@@ -1,0 +1,15 @@
+services:
+  mysql_206:
+    container_name: aprendendo_mysql
+    hostname: aprendendo_mysql
+    image: mysql:8
+    restart: always
+    env_file:
+      - .env
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./aprendendo_mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
