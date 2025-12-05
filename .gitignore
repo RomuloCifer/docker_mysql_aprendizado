@@ -16,3 +16,6 @@ logs/
 __pycache__/
 *.__pycache__*.pio
 *.pyd
+
+#testes
+test_env.py

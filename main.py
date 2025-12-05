@@ -1,13 +1,19 @@
+import os
 import pymysql
-from dotenv import load_dotenv
-
+import config
 
 
 conn = pymysql.connect(
-    host='localhost',
-    user='usuario',
-    password='senha',
-    database='my_db'
+    host=config.MYSQL_HOST,
+    user=config.MYSQL_USER,
+    password=config.MYSQL_PASSWORD,
+    database=config.MYSQL_DATABASE
 )
-print("FINALMENTE")
+
+
+# 2) Abre conexão usando as variáveis do .env
+
+
+print("Conectado (:")
+
 conn.close()
