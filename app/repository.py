@@ -15,18 +15,14 @@ def criar_tabela_clientes_se_nao_existir() -> None:
         
 def resetar_tabela_clientes() -> None:
     """Reseta a tabela de clientes removendo e recriando ela."""
+    yes_or_no = input("Tem certeza que deseja resetar a tabela de clientes? (s/n): ")
+    if yes_or_no.lower() != 's':
+        print("Operação cancelada.")
+        return
     with get_connection() as conn:
         with conn.cursor() as cursor:
-            sql_drop = """DROP TABLE IF EXISTS customers"""
-            cursor.execute(sql_drop,)
-            
-            sql_create = """CREATE TABLE customers (
-                id INT NOT NULL AUTO_INCREMENT,
-                name VARCHAR(50) NOT NULL,
-                age INT NOT NULL,
-                PRIMARY KEY(id))"""
-            cursor.execute(sql_create,)
-            conn.commit()
+            cursor.execute("TRUNCATE TABLE customers;")
+        conn.commit()
 
 def inserir_cliente(nome: str, idade: int) -> None:
     """Insere um novo cliente na tabela de clientes."""
