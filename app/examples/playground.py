@@ -72,6 +72,19 @@ def delete_customer_by_id():
             cursor.execute("DELETE FROM customers WHERE id = %s;", (customer_id,))
             conn.commit()
             print(f"Cliente com ID {customer_id} deletado.")
+def update_customer():
+    """Atualiza o nome e idade de um cliente pelo ID."""
+    list_customers()
+    customer_id = int(input("Digite o ID do cliente a ser atualizado: "))
+    name, age = get_name_age()
+    with get_connection() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "UPDATE customers SET name = %s, age = %s WHERE id = %s;",
+                (name, age, customer_id)
+            )
+            conn.commit()
+            print(f"Cliente com ID {customer_id} atualizado.")
 def menu():
     """Menu interativo para testes."""
     escolhas = {
@@ -79,8 +92,9 @@ def menu():
         "2" : ("Listar clientes acima de uma idade", lambda: list_customers_above_age(int(input("Idade mínima: ")))),
         "3" : ("Mostrar estatísticas de idade", get_age_stats),
         "4" : ("inserir um cliente", insert_customer),
-        "5" : ("Deletar um cliente pelo ID", delete_customer_by_id),
-        "6" : ("resetar tabela de clientes", reset_customers_table),
+        "5" : ("Atualizar um cliente pelo ID", update_customer),
+        "6" : ("Deletar um cliente pelo ID", delete_customer_by_id),
+        "7" : ("resetar tabela de clientes", reset_customers_table),
         "0" : ("Sair", exit)
     }
     while True:

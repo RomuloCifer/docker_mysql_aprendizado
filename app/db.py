@@ -8,5 +8,5 @@ def get_connection():
     password=MYSQL_PASSWORD,
     database=MYSQL_DATABASE,
     charset='utf8mb4',
-    # cursorclass=pymysql.cursors.DictCursor # Aparentemente isso ajuda a receber resultados como dicionarios.
+    cursorclass=pymysql.cursors.DictCursor # Aparentemente isso ajuda a receber resultados como dicionarios.
     )
